@@ -1,0 +1,24 @@
+services:
+  pulsar-docker:
+    container_name: pulsar-docker
+    hostname: pulsar-docker
+    command: bin/pulsar standalone
+    image: apachepulsar/pulsar:3.2.1
+    restart: always
+    ports:
+      - "6650:6650"
+      - "8080:8080"
+    healthcheck:
+      test: [ "CMD", "bin/pulsar-admin", "brokers", "healthcheck" ]
+      interval: 5s
+      timeout: 10s
+      retries: 10
+
+  dekaf:
+    image: tealtools/dekaf:latest
+    restart: always
+    environment:
+      DEKAF_PULSAR_WEB_URL: "http://pulsar-docker:8080"
+      DEKAF_PULSAR_BROKER_URL: "pulsar://pulsar-docker:6650"
+    ports:
+      - "8090:8090"

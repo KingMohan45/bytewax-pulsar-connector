@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "bytewax-pulsar"
+version = "0.1.0"
+description = ""
+authors = ["Mohan Kumar Ragamsetty <ragamsettymohankumar@gmail.com>"]
+packages = [{ include = "bytewax_pulsar_connector", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+bytewax = "^0.21.1"
+pydantic = "^2.0.0"
+pulsar-client = "^3.7.0"
+
+[tool.poetry.group.dev.dependencies]
+pylint = "^3.3.7"
+pytest = "^8.3.5"
+setuptools = "^80.8.0"
+pytest-cov = "^6.1.1"
+
+[tool.poetry.group.publishing.dependencies]
+twine = "^5.1.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
